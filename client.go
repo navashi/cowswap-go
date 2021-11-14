@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gelfand/gnosis-go/types"
+	"github.com/gelfand/cowswap-go/types"
 )
 
 const (
