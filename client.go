@@ -93,6 +93,27 @@ func (c *Client) CreateOrder(ctx context.Context, params types.OrderParams) (str
 	return res, nil
 }
 
+func (c *Client) OrderByID(ctx context.Context, uid string) (types.Order, error) {
+	req, err := http.NewRequestWithContext(ctx, "GET", c.url+"orders/"+uid, nil)
+	if err != nil {
+		return types.Order{}, err
+	}
+	req.Header.Add("Accept", "application/json")
+
+	resp, err := c.client.Do(req)
+	if err != nil {
+		return types.Order{}, err
+	}
+	defer resp.Body.Close()
+
+	var res types.Order
+	if err = json.NewDecoder(resp.Body).Decode(&res); err != nil {
+		return types.Order{}, err
+	}
+
+	return res, nil
+}
+
 func (c *Client) Orders(ctx context.Context, params types.OrdersParams) ([]types.Order, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", c.url+"orders", nil)
 	if err != nil {

@@ -42,7 +42,7 @@ func TestClient_Orders(t *testing.T) {
 
 func TestOrders(t *testing.T) {
 	ctx := context.Background()
-	resp, err := Orders(ctx, types.OrdersParams{
+	_, err := Orders(ctx, types.OrdersParams{
 		Owner:                      "0x7BB8536Bac7d6e5c4E352Ce50be8968d5d6cd445",
 		IncludeFullyExecuted:       true,
 		IncludeInvalidated:         true,
@@ -53,6 +53,15 @@ func TestOrders(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+}
 
-	fmt.Println(resp)
+func TestOrderByID(t *testing.T) {
+	ctx := context.Background()
+
+	resp, err := client.OrderByID(ctx, "0x54d77f468bfd87405000734b689e1549d54e4106e39db9c2a2ed4793493b5c107bb8536bac7d6e5c4e352ce50be8968d5d6cd44561906a59")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	fmt.Printf("%+v\n", resp)
 }
