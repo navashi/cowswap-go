@@ -1,4 +1,4 @@
-module github.com/gelfand/gnosis-go
+module github.com/gelfand/cowswap-go
 
 go 1.17
 

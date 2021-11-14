@@ -1,4 +1,4 @@
-package gnosis
+package cowswap
 
 import (
 	"context"
